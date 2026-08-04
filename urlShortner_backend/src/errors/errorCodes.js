@@ -1,0 +1,32 @@
+// Application Error Codes:
+// These codes are intended for the frontend, logging,
+// monitoring, and debugging.
+
+export const ERROR_CODES = Object.freeze({
+    //Authentication
+    INVALID_CREDENTIALS: "INVALID_CREDENTIALS",
+    INVALID_TOKEN: "INVALID_TOKEN",
+    TOKEN_EXPIRED: "TOKEN_EXPIRED",
+    UNAUTHORIZED: "UNAUTHORIZED",
+    FORBIDDEN: "FORBIDDEN",
+
+    //User
+    USER_NOT_FOUND: "USER_NOT_FOUND",
+    USER_ALREADY_EXISTS: "USER_ALREADY_EXISTS",
+
+    //URL
+    INVALID_URL: "INVALID_URL",
+    URL_NOT_FOUND: "URL_NOT_FOUND",
+    URL_ALREADY_EXISTS: "URL_ALREADY_EXISTS",
+    SHORT_CODE_ALREADY_EXISTS: "SHORT_CODE_ALREADY_EXISTS",
+
+    // Validation
+    VALIDATION_ERROR: "VALIDATION_ERROR",
+    MISSING_REQUIRED_FIELDS: "MISSING_REQUIRED_FIELDS",
+
+    // Database
+    DATABASE_ERROR: "DATABASE_ERROR",
+
+    // Server
+    INTERNAL_SERVER_ERROR: "INTERNAL_SERVER_ERROR",
+});
