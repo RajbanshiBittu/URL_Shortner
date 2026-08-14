@@ -8,10 +8,10 @@ import { HTTP_STATUS } from "../constants/httpStatus.js";
 
 // Register User
 export const registerUser = async (userData) => {
-
     const { name, email, password } = userData;
 
     const existingUser = await userRepository.findUserByEmail(email);
+    
     if (existingUser) {
         throw new AppError(
             ERROR_CODES.USER_ALREADY_EXISTS,

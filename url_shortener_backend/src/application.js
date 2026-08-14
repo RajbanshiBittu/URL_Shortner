@@ -35,7 +35,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api/auth", userRoutes);
-app.use("api/url", urlRoutes);
+app.use("/api/url", urlRoutes);
 // Redirect route (outside /api)
 app.get("/:shortCode", urlController.redirectUrl);
 

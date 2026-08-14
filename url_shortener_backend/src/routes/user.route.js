@@ -18,8 +18,7 @@ const router = express.Router();
 // Register a new user
 router.post(
     "/register",
-    validateUserRegistration,
-    validate,
+    validate(validateUserRegistration),
     userController.registerUser
 );
 
@@ -28,8 +27,7 @@ router.post(
 // Authenticate user
 router.post(
     "/login",
-    validateUserLogin,
-    validate,
+    validate(validateUserLogin),
     userController.loginUser
 );
 

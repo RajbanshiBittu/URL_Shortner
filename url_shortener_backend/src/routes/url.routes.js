@@ -1,16 +1,15 @@
 import express from "express";
-
 import * as urlController from "../controllers/url.controller.js";
 import {
     createShortUrlSchema,
     updateUrlSchema,
 } from "../validators/url.validator.js";
 import { validate } from "../middlewares/validation.middleware.js";
-// Example authentication middleware
 import { authenticateUser } from "../middlewares/auth.middleware.js";
 
 
 const router = express.Router();
+
 
 // POST /api/url/shorten
 router.post(
