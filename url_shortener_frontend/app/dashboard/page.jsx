@@ -5,8 +5,8 @@ import { useUrls } from '@/hooks/useUrls';
 import { useAuth } from '@/hooks/useAuth';
 import { StatCard } from '@/components/dashboard/StatCard';
 import { CreateUrlForm } from '@/components/dashboard/CreateUrlForm';
-import { Link, BarChart3, Zap } from 'lucide-react';
-import Link as NextLink from 'next/link';
+import { Link as LinkIcon, BarChart3, Zap } from 'lucide-react';
+import NextLink from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export default function DashboardPage() {
@@ -33,7 +33,7 @@ export default function DashboardPage() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard
-          icon={Link}
+          icon={LinkIcon}
           label="Total Links"
           value={totalUrls}
           trend={totalUrls > 0 ? 5 : 0}
@@ -109,7 +109,7 @@ export default function DashboardPage() {
       {urls.length === 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
           <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <Link className="w-6 h-6 text-indigo-600" />
+            <LinkIcon className="w-6 h-6 text-indigo-600" />
           </div>
           <h3 className="text-lg font-bold text-gray-900 mb-2">No links yet</h3>
           <p className="text-gray-600 mb-6">Create your first short link above to get started</p>

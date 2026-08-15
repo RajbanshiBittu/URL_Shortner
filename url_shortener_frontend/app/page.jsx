@@ -138,9 +138,6 @@ export default function LandingPage() {
                   </Button>
                 </Link>
                 <Link href="/auth/login">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                    Log in
-                  </Button>
                 </Link>
               </>
             )}
