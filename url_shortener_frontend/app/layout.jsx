@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AuthProvider } from "@/context/auth.context";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "ShortItOut - A URL Shortener",
-  description: "A URL Shortener built with Next.js, Tailwind.css, and JavaScript",
+  title: "SlashURL - Short links. Simple sharing.",
+  description: "Create short, powerful links in seconds and manage them from one simple dashboard.",
 };
 
 export default function RootLayout({ children }) {
@@ -24,14 +26,21 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-white">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AuthProvider>
+            {children}
+            <Toaster 
+              position="top-right"
+              richColors
+              closeButton
+            />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

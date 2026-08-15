@@ -5,6 +5,8 @@ import { HTTP_STATUS } from "../constants/httpStatus.js";
 
 
 // POST /api/url/shorten
+// Create Short URL
+
 export const createShortUrl = asyncHandler(async (req, res) => {
 
     const { originalUrl } = req.body;
@@ -14,26 +16,31 @@ export const createShortUrl = asyncHandler(async (req, res) => {
         req.user.id
     );
 
-    const shortUrl = `${req.protocol}://${req.get("host")}/${url.shortCode}`;
+    const shortUrl =
+        `${req.protocol}://${req.get("host")}/${url.shortCode}`;
 
     return sendSuccessResponse(
         res,
-        HTTP_STATUS.CREATED,
-        true,
-        "Short URL created successfully.",
         {
-            id: url._id,
-            originalUrl: url.originalUrl,
-            shortCode: url.shortCode,
-            shortUrl,
-            clicks: url.clicks,
-            createdAt: url.createdAt,
+            statusCode: HTTP_STATUS.CREATED,
+
+            message: "Short URL created successfully.",
+
+            data: {
+                id: url._id,
+                originalUrl: url.originalUrl,
+                shortCode: url.shortCode,
+                shortUrl,
+                clicks: url.clicks,
+                createdAt: url.createdAt,
+            },
         }
     );
 });
 
-
 // GET /:shortCode
+// Redirect to Original URL
+
 export const redirectUrl = asyncHandler(async (req, res) => {
 
     const { shortCode } = req.params;
@@ -46,21 +53,32 @@ export const redirectUrl = asyncHandler(async (req, res) => {
 
 
 // GET /api/url/my-urls
+// Get Logged-in User's URLs
+
 export const getUserUrls = asyncHandler(async (req, res) => {
 
-    const urls = await urlService.getUserUrls(req.user.id);
+    const urls = await urlService.getUserUrls(
+        req.user.id
+    );
 
     return sendSuccessResponse(
         res,
-        HTTP_STATUS.OK,
-        true,
-        "URLs fetched successfully.",
-        urls
+        {
+            statusCode: HTTP_STATUS.OK,
+
+            message: "URLs fetched successfully.",
+
+            data: urls,
+        }
     );
 });
 
 
+// =====================================================
 // PATCH /api/url/:id
+// Update URL
+// =====================================================
+
 export const updateUrl = asyncHandler(async (req, res) => {
 
     const updatedUrl =
@@ -72,15 +90,20 @@ export const updateUrl = asyncHandler(async (req, res) => {
 
     return sendSuccessResponse(
         res,
-        HTTP_STATUS.OK,
-        true,
-        "URL updated successfully.",
-        updatedUrl
+        {
+            statusCode: HTTP_STATUS.OK,
+
+            message: "URL updated successfully.",
+
+            data: updatedUrl,
+        }
     );
 });
 
 
 // DELETE /api/url/:id
+// Delete URL
+
 export const deleteUrl = asyncHandler(async (req, res) => {
 
     await urlService.deleteUrl(
@@ -90,8 +113,12 @@ export const deleteUrl = asyncHandler(async (req, res) => {
 
     return sendSuccessResponse(
         res,
-        HTTP_STATUS.OK,
-        true,
-        "URL deleted successfully."
+        {
+            statusCode: HTTP_STATUS.OK,
+
+            message: "URL deleted successfully.",
+
+            data: null,
+        }
     );
 });
