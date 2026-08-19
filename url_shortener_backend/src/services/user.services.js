@@ -48,10 +48,6 @@ export const loginUser = async ({ email, password }) => {
         );
     }
 
-    // console.log("Request password: ", password);
-    // console.log("User: ", user);
-    // console.log("Stroed passowrd: ", user.password);
-
     const isPasswordMatched = await comparePassword(
         password,
         user.password

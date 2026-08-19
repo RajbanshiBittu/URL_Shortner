@@ -11,28 +11,26 @@ export const createShortUrl = async (
     originalUrl,
     userId
 ) => {
+    while(true){
+        const shortCode = generateShortCode();
+        const existingUrl = await urlRepository.findByShortCode(shortCode);
 
-    let shortCode;
-    let existingUrl;
+        if(existingUrl) continue;
 
+        try{
+            const url = await urlRepository.createUrl({
+                originalUrl,
+                shortCode,
+                user: userId
+            })
+            return  url;
+        }catch(error){
+            //MongoDB duplicate key error
+            if error.code === 11000 continue;
+            throw error;
+        }
     
-    // Generate a unique short code.
-    // Retry until a unique code is found.
-    do {
-        shortCode = generateShortCode();
-
-        existingUrl =
-            await urlRepository.findByShortCode(shortCode);
-
-    } while (existingUrl);
-
-    const url = await urlRepository.createUrl({
-        originalUrl,
-        shortCode,
-        user: userId,
-    });
-
-    return url;
+    }
 };
 
 
