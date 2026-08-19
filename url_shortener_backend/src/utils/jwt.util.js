@@ -1,13 +1,15 @@
 import jwt from "jsonwebtoken";
 
-const ACCESS_TOKEN_EXPIRES_IN = process.env.JWT_ACCESS_EXPIRES_IN || "1d";
+console.log("JWT_ACCESS_EXPIRES_IN:", process.env.JWT_ACCESS_EXPIRES_IN);
+console.log("TYPE:", typeof process.env.JWT_ACCESS_EXPIRES_IN);
+console.log("ACCESS SECRET LOADED:", !!process.env.JWT_ACCESS_SECRET);
 
 export const generateAccessToken = (payload) => {
     return jwt.sign(
         payload,
         process.env.JWT_ACCESS_SECRET,
         {
-            expiresIn: ACCESS_TOKEN_EXPIRES_IN,
+            expiresIn: process.env.JWT_ACCESS_EXPIRES_IN,
         }
     );
 };
@@ -17,7 +19,7 @@ export const generateRefreshToken = (userId) => {
         { userId},
         process.env.JWT_REFRESH_SECRET,
         {
-            expiresIn: REFRESH_TOKEN_EXPIRES_IN,
+            expiresIn: process.env.JWT_REFRESH_EXPIRES_IN,
         }
     );
 };

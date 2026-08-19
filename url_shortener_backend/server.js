@@ -6,6 +6,8 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 
+console.log("ENV:", process.env.JWT_ACCESS_EXPIRES_IN);
+console.log("SECRET:", !!process.env.JWT_ACCESS_SECRET);
 
 const startServer = async () => {
     try {

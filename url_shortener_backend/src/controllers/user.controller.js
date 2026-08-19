@@ -6,7 +6,6 @@ import { sendSuccessResponse } from "../utils/response.util.js";
 
 // Register User
 export const registerUser = asyncHandler(async (req, res) => {
-
     const user = await userService.registerUser(req.body);
 
     return sendSuccessResponse(res, {

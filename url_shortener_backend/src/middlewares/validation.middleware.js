@@ -29,7 +29,6 @@ export const validate = (schema) => {
         }
 
         req.body = value;
-
         next();
     };
 };
