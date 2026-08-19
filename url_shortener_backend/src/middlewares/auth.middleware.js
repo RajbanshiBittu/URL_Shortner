@@ -31,17 +31,34 @@ export const authenticateUser = (req, res, next) => {
     try {
         const decoded = jwt.verify(
             token,
-            process.env.JWT_SECRET
+            process.env.JWT_ACCESS_SECRET
         );
         req.user = decoded;
         next();
     } catch (error) {
-        return next(
-            new AppError(
-                ERROR_CODES.INVALID_TOKEN,
-                "Invalid or expired token.",
-                HTTP_STATUS.UNAUTHORIZED
-            )
-        );
+        //access token expired
+        if (error instanceof jwt.TokenExpiredError){
+            return next(
+                new AppError(
+                    ERROR_CODES.TOKEN_EXPIRED,
+                    "Access token has expired.",
+                    HTTP_STATUS.UNAUTHORIZED
+                )
+            );
+        }
+        
+        //invalid token
+        if (error instanceof jwt.JsonWebTokenError){
+            return next(
+                new AppError(
+                    ERROR_CODES.INVALID_TOKEN,
+                    "Invalid access token.",
+                    HTTP_STATUS.UNAUTHORIZED
+                )
+            );
+        }
+
+        //Unexpected error
+        return next(error);
     }
 };

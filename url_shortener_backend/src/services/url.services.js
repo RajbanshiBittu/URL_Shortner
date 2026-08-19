@@ -26,7 +26,7 @@ export const createShortUrl = async (
             return  url;
         }catch(error){
             //MongoDB duplicate key error
-            if error.code === 11000 continue;
+            if (error.code === 11000) continue;
             throw error;
         }
     

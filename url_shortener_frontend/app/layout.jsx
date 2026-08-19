@@ -15,8 +15,54 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "SlashURL - Short links. Simple sharing.",
-  description: "Create short, powerful links in seconds and manage them from one simple dashboard.",
+  title: "SlashURL - Free URL Shortener & Link Management Platform",
+  
+  description:
+    "Shorten long URLs into simple, shareable links with SlashURL. Create, manage, track, and organize your short links from one powerful dashboard.",
+
+  keywords: [
+    "URL shortener",
+    "free URL shortener",
+    "URL shortening service",
+    "short URL",
+    "short link generator",
+    "link shortener",
+    "long URL shortener",
+    "custom short links",
+    "link management",
+    "URL management",
+    "short link generator",
+    "URL analytics",
+    "link tracking",
+    "click tracking",
+    "link sharing",
+    "shortened URLs",
+    "create short URLs",
+    "manage short links",
+    "track short links",
+    "online URL shortener",
+  ],
+
+  authors: [
+    {
+      name: "SlashURL",
+    },
+  ],
+
+  creator: "SlashURL",
+  publisher: "SlashURL",
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
